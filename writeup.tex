@@ -6,65 +6,97 @@
 
 \begin{document}
 
-\title{Computing Linux Project\\
-a452}
-\author{Chris Hobbs}
-\date{May, 2015}
-\maketitle
+	\title{Computing Linux Project\\
+	a452}
+	\author{Chris Hobbs}
+	\date{May, 2015}
+	\maketitle
 
-In this task, I will be exploring the linux commandline, and explaining the processes needed to perform some basic actions with the commandline.
+	In this task, I will be exploring the linux commandline, and explaining the processes needed to perform some basic actions with the commandline.
 
-\section{A \emph{prompt} introduction.}
+	% 1
+	\section{A \emph{prompt} introduction.}
 
-Here is the default prompt on debian linux computers:\\
-\includegraphics{prompt}
+		Here is the default prompt on debian linux computers:\\
+		\includegraphics{prompt}
 
-This prompt shows some important information to the user about the current environment that the computer is working in so that the user is able to make decisions on what to do. The prompt is made up of the following parts:
-\begin{itemize}
-  \item The current user (the part before the at-sign),
-  \item The hostname of the current computer (the part between the at-sign and the colon), and
-  \item The current directory (the part between the colon and the pound sign).
-\end{itemize}
+		This prompt shows some important information to the user about the current environment that the computer is working in so that the user is able to make decisions on what to do. The prompt is made up of the following parts:
 
-The current directory is shown in this example by the tilde character, which means that you are in your home directory (/home/username). The at-sign was chosen because it reflects the fact that the user is `at' the computer with the shown hostname. In the early internet, it was very likely that the user-hostname pair was actually the user's email.
+		\begin{itemize}
+		    \item The current user (the part before the at-sign),
+		    \item The hostname of the current computer (the part between the at-sign and the colon), and
+		    \item The current directory (the part between the colon and the pound sign).
+		\end{itemize}
 
-\section{\emph{ls}ting files.}
+		The current directory is shown in this example by the tilde character, which means that you are in your home directory (/home/username). The at-sign was chosen because it reflects the fact that the user is `at' the computer with the shown hostname. In the early internet, it was very likely that the user-hostname pair was actually the user's email.
 
-\includegraphics{ls}
+	% 2
+	\section{\emph{ls}ting files.}
 
-When you type \verb|ls| then press enter, you are executing the ls command. A command is simply a program which does something. They typically have short, easy to type names for convenient use at a terminal.
+		\includegraphics{ls}
 
-The ls command in the POSIX specification (which linux conforms to), is used to list the contents - in terms of files and folders - of a directory. When used without any arguments, it lists the current directory.
+		When you type \verb|ls| then press enter, you are executing the ls command. A command is simply a program which does something. They typically have short, easy to type names for convenient use at a terminal.
 
-\pagebreak
-The output of ls is colourised, with each colour having a different meaning:\cite{ls-colours}
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Light Blue}]
-  \item[Blue] directory
-  \item[White] unknown file
-  \item[Green] executable
-  \item[Light Blue] link
-  \item[Pink] image
-  \item[Red] archive
-\end{description}
+		The ls command in the POSIX specification (which linux conforms to), is used to list the contents - in terms of files and folders - of a directory. When used without any arguments, it lists the current directory.
 
-\section{Playing with \emph{pipes}.}
+		\begin{samepage}
 
-\includegraphics{ls-grep}
+			The output of ls is colourised, with each colour having a different meaning:\cite{ls-colours}
 
-The vertical bar character is used on the commandline to pipe the output of one command into the input of another. For this reason it is commonly called the pipe character. For the \verb!ls | grep D! example, we are piping the output of \verb|ls| (a listing of the current directory) into the \verb|grep| command, which searches the data from ls for the character `D'.
+			\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Light Blue}]
+			    \item[Blue] directory
 
-\newpage
-\begin{thebibliography}{9}
+			    \item[White] unknown file
+			    \item[Green] executable file
+			    \item[Pink] image file
+			    \item[Red] archive file
 
-\bibitem{ls-colours}
-  karthick87,
-  \emph{What do the different colors mean in the terminal?},
-  Ask Ubuntu,
-  http://askubuntu.com/a/17300
+			    \item[Light Blue] link
+			\end{description}
 
-\end{thebibliography}
+			In the example image above, this means that `btrfs-progs', `debian', `duperemove' and `linux-3.19.1' are directories. I'm sure you can guess the rest.
 
-\vfill
-This document was typed up using \LaTeX. Which is why it looks so professional. Hey look examiner, I'm learning yet \emph{more} life skills!
+		\end{samepage}
+
+	% 3
+	\section{Playing with \emph{pipes}.}
+
+		\includegraphics{ls-grep}
+
+		The vertical bar character is used on the commandline to pipe the output of one command into the input of another. For this reason it is commonly called the pipe character. For the \verb!ls | grep D! example, we are piping the output of \verb|ls| (a listing of the current directory) into the \verb|grep| command, which searches each line of output from ls (in this case a file/directory name) for the character `D'. This means that the output shows a list of files and directories whose names contain a capital D. Because none of the files in the home directory of my linux computer have a `D' character in them, I tried grep again with a lowercase `d', and got a result. I also tried grepping for `linux' which returned a list of files containing the word linux.
+
+	% 4
+	\section{\emph{Redirecting} all the things.}
+
+		\includegraphics{redirection}
+
+		In linux commandlines, \verb|>| is used to redirect the output of a command - like pipes - but to a file instead of another command.\cite{redirection} At first, it doesn't look like \verb|>| and \verb|>>| do anything at all, but I found out what they do using the internet. I also found out that \verb|>| overwrites the contents of the file it is writing to while \verb|>>| appends the contents of the output to the bottom of the file. In the example I list above, I use the \verb|cat| command to print the contents of the `list' file that I have created by output redirecton. You can see the contents of \verb|ls| printed twice the first time because I had used \verb|>>| to append the contents of the file when it already had the contents once. Using \verb|ls > list| replaces the contents of the file with the output of \verb|ls| therefore the last \verb|cat| only prints the output of ls once.
+
+	% 5
+	\section{\emph{cd} aw\textsuperscript{aa\textsuperscript{a\textsuperscript{a\textsuperscript{\textsuperscript{y}}}}}}
+
+		%
+
+
+	% end page
+	\newpage
+	\begin{thebibliography}{9}
+
+		\bibitem{ls-colours}
+		    karthick87,
+		    \emph{What do the different colors mean in the terminal?},
+		    Ask Ubuntu,
+		    http://askubuntu.com/a/17300
+
+		\bibitem{redirection}
+		    William E. Shotts, Jr.,
+		    \emph{Learning the shell - Lesson 7: I/O Redirection},
+		    LinuxCommand.org,
+		    http://linuxcommand.org/lc3\_lts0070.php
+
+	\end{thebibliography}
+
+	\vfill
+	This document was typed up using \LaTeX. Which is why it looks so professional. Hey look examiner, I'm learning yet \emph{more} life skills!
 
 \end{document}
