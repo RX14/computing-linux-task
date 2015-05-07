@@ -70,29 +70,46 @@
 
 		\includegraphics{redirection}
 
-		In linux commandlines, \verb|>| is used to redirect the output of a command - like pipes - but to a file instead of another command.\cite{redirection} At first, it doesn't look like \verb|>| and \verb|>>| do anything at all, but I found out what they do using the internet. I also found out that \verb|>| overwrites the contents of the file it is writing to while \verb|>>| appends the contents of the output to the bottom of the file. In the example I list above, I use the \verb|cat| command to print the contents of the `list' file that I have created by output redirecton. You can see the contents of \verb|ls| printed twice the first time because I had used \verb|>>| to append the contents of the file when it already had the contents once. Using \verb|ls > list| replaces the contents of the file with the output of \verb|ls| therefore the last \verb|cat| only prints the output of ls once.
+		In linux commandlines, \verb|>| is used to redirect the output of a command - like pipes - but to a file instead of another command.\cite{lts-redirection} At first, it doesn't look like \verb|>| and \verb|>>| do anything at all, but I found out what they do using the internet. I also found out that \verb|>| overwrites the contents of the file it is writing to while \verb|>>| appends the contents of the output to the bottom of the file. In the example I list above, I use the \verb|cat| command to print the contents of the `list' file that I have created by output redirecton. You can see the contents of \verb|ls| printed twice the first time because I had used \verb|>>| to append the contents of the file when it already had the contents once. Using \verb|ls > list| replaces the contents of the file with the output of \verb|ls| therefore the last \verb|cat| only prints the output of ls once.
 
 	% 5
 	\section{\emph{cd} aw\textsuperscript{aa\textsuperscript{a\textsuperscript{a\textsuperscript{\textsuperscript{y}}}}}}
 
-		%
+		The \verb|cd| (\emph{c}hange \emph{d}irectory) command is used to change the current directory. \empth|..| is a shortcut in linux for the parent directory of the current one. For example if you are in the directory \verb|/home/chris/|, \verb|..| would be \verb|/home/|. In my example, where the current directory is \verb|/root/| (the home directory of the root user), using \verb|cd ..| would take me to the root directory. We can verify this with the \verb|pwd| command.\cite{lts-navigation}
 
+		The second command (\verb|cd /etc|) - unlike the first - uses a absolute directory name instead of a relative one. Absolute directory names always begin with a \verb|/| because they are specifying the whole path to get to the directory, which always starts from the root of the file system, just like an absolute path always begins with the drive letter on windows.
+
+		The third command is much like the second, except it takes you to the root of the filesystem in linux.
+
+		The fourth command (\verb|cd ~|) uses a shortcut simililar to \verb|..| to take you to your home directory. In linux \verb|~| is always the path to that user's home directory. You can also use \verb|~username| to take you to any user's home directory. For example \verb|~chris| would take you to the home directory of the user `chris'.
+
+	% 6
+	\section{\emph{mk}ing \emph{dir}ectories}
+
+		The \verb|mkdir| command is used to make a directory (REF)
 
 	% end page
 	\newpage
 	\begin{thebibliography}{9}
 
 		\bibitem{ls-colours}
-		    karthick87,
-		    \emph{What do the different colors mean in the terminal?},
-		    Ask Ubuntu,
-		    http://askubuntu.com/a/17300
+			karthick87,
+			\emph{What do the different colors mean in the terminal?},
+			Ask Ubuntu,
+			http://askubuntu.com/a/17300
 
-		\bibitem{redirection}
-		    William E. Shotts, Jr.,
-		    \emph{Learning the shell - Lesson 7: I/O Redirection},
-		    LinuxCommand.org,
-		    http://linuxcommand.org/lc3\_lts0070.php
+		\bibitem{lts-redirection}
+			William E. Shotts, Jr.,
+			\emph{Learning the shell - Lesson 7: I/O Redirection},
+			LinuxCommand.org,
+			http://linuxcommand.org/lc3\_lts0070.php
+
+		\bibitem{lts-navigation}
+			William E. Shotts, Jr.,
+			\emph{Learning the shell - Lesson 2: Navigation}
+			LinuxCommand.org,
+			http://linuxcommand.org/lc3_lts0020.php
+		
 
 	\end{thebibliography}
 
